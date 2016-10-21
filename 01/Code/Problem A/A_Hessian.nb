@@ -1,0 +1,228 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6393,        218]
+NotebookOptionsPosition[      5857,        195]
+NotebookOutlinePosition[      6195,        210]
+CellTagsIndexPosition[      6152,        207]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"EnergyPlus", "[", 
+   RowBox[{"kx_", ",", "ky_"}], "]"}], " ", ":=", " ", 
+  RowBox[{"\[CurlyEpsilon]", "+", 
+   RowBox[{"t", "*", 
+    RowBox[{"Sqrt", "[", 
+     RowBox[{"1", "+", 
+      RowBox[{"4", "*", 
+       RowBox[{"Cos", "[", 
+        RowBox[{"kx", "*", 
+         RowBox[{"a", "/", "2"}]}], "]"}], 
+       RowBox[{"Cos", "[", 
+        RowBox[{
+         RowBox[{"Sqrt", "[", "3", "]"}], "ky", "*", 
+         RowBox[{"a", "/", "2"}]}], "]"}]}], "+", 
+      RowBox[{"4", 
+       RowBox[{
+        RowBox[{"Cos", "[", 
+         RowBox[{"kx", "*", 
+          RowBox[{"a", "/", "2"}]}], "]"}], "^", "2"}]}]}], 
+     "]"}]}]}]}]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"D", "[", 
+       RowBox[{
+        RowBox[{"Energy", "[", 
+         RowBox[{"kx", ",", "ky"}], "]"}], ",", "kx"}], "]"}], "\[Equal]", 
+      "0"}], ",", 
+     RowBox[{
+      RowBox[{"D", "[", 
+       RowBox[{
+        RowBox[{"Energy", "[", 
+         RowBox[{"kx", ",", "ky"}], "]"}], ",", "ky"}], "]"}], "\[Equal]", 
+      "0"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"kx", ",", "ky"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.685549159947339*^9, 3.6855492278244343`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Solve", "::", "ifun"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Inverse functions are being used by \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"Solve\\\"}]\\)\[NoBreak], so some solutions \
+may not be found; use Reduce for complete solution information. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/Solve/ifun\\\", \
+ButtonNote -> \\\"Solve::ifun\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.685549228596075*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"kx", "\[Rule]", "0"}], ",", 
+     RowBox[{"ky", "\[Rule]", "0"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"kx", "\[Rule]", 
+      RowBox[{"-", "\[Pi]"}]}], ",", 
+     RowBox[{"ky", "\[Rule]", 
+      RowBox[{"-", 
+       FractionBox["\[Pi]", 
+        SqrtBox["3"]]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"kx", "\[Rule]", 
+      RowBox[{"-", "\[Pi]"}]}], ",", 
+     RowBox[{"ky", "\[Rule]", 
+      FractionBox["\[Pi]", 
+       SqrtBox["3"]]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"kx", "\[Rule]", "\[Pi]"}], ",", 
+     RowBox[{"ky", "\[Rule]", 
+      RowBox[{"-", 
+       FractionBox["\[Pi]", 
+        SqrtBox["3"]]}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"kx", "\[Rule]", "\[Pi]"}], ",", 
+     RowBox[{"ky", "\[Rule]", 
+      FractionBox["\[Pi]", 
+       SqrtBox["3"]]}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.6855491868360786`*^9, 3.685549191705778*^9}, 
+   3.6855492285974817`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"(", "\[NoBreak]", GridBox[{
+    {
+     RowBox[{"D", "[", 
+      RowBox[{
+       RowBox[{"Energy", "[", 
+        RowBox[{"kx", ",", "ky"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"kx", ",", "2"}], "}"}]}], "]"}], 
+     RowBox[{"D", "[", 
+      RowBox[{
+       RowBox[{"Energy", "[", 
+        RowBox[{"kx", ",", "ky"}], "]"}], ",", "kx", ",", "ky"}], "]"}]},
+    {
+     RowBox[{"D", "[", 
+      RowBox[{
+       RowBox[{"Energy", "[", 
+        RowBox[{"kx", ",", "ky"}], "]"}], ",", "ky", ",", "kx"}], "]"}], 
+     RowBox[{"D", "[", 
+      RowBox[{
+       RowBox[{"Energy", "[", 
+        RowBox[{"kx", ",", "ky"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"ky", ",", "2"}], "}"}]}], "]"}]}
+   }], "\[NoBreak]", ")"}]], "Input",
+ CellChangeTimes->{{3.6855493445564957`*^9, 3.685549420288651*^9}, {
+  3.685549468067563*^9, 3.685549505919937*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Eigenvalues", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", "\[NoBreak]", GridBox[{
+       {
+        RowBox[{"D", "[", 
+         RowBox[{
+          RowBox[{"Energy", "[", 
+           RowBox[{"kx", ",", "ky"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"kx", ",", "2"}], "}"}]}], "]"}], 
+        RowBox[{"D", "[", 
+         RowBox[{
+          RowBox[{"Energy", "[", 
+           RowBox[{"kx", ",", "ky"}], "]"}], ",", "kx", ",", "ky"}], "]"}]},
+       {
+        RowBox[{"D", "[", 
+         RowBox[{
+          RowBox[{"Energy", "[", 
+           RowBox[{"kx", ",", "ky"}], "]"}], ",", "ky", ",", "kx"}], "]"}], 
+        RowBox[{"D", "[", 
+         RowBox[{
+          RowBox[{"Energy", "[", 
+           RowBox[{"kx", ",", "ky"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"ky", ",", "2"}], "}"}]}], "]"}]}
+      }], "\[NoBreak]", ")"}], "/.", 
+    RowBox[{"kx", "\[Rule]", 
+     RowBox[{"-", "Pi"}]}]}], "/.", 
+   RowBox[{"ky", "\[Rule]", 
+    RowBox[{
+     RowBox[{"-", "Pi"}], "/", 
+     RowBox[{"Sqrt", "[", "3", "]"}]}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.685549428240971*^9, 3.685549443467967*^9}, {
+  3.685549526183261*^9, 3.685549561140522*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   FractionBox["3", "2"], ",", 
+   RowBox[{"-", 
+    FractionBox["1", "2"]}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.685549444312976*^9, {3.6855495410812273`*^9, 3.6855495665396147`*^9}}]
+}, Open  ]]
+},
+WindowSize->{1364, 715},
+WindowMargins->{{11, Automatic}, {Automatic, 117}},
+FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 674, 21, 32, "Input"],
+Cell[CellGroupData[{
+Cell[1257, 45, 593, 19, 32, "Input"],
+Cell[1853, 66, 552, 11, 23, "Message"],
+Cell[2408, 79, 1066, 36, 51, "Output"]
+}, Open  ]],
+Cell[3489, 118, 885, 26, 48, "Input"],
+Cell[CellGroupData[{
+Cell[4399, 148, 1207, 35, 48, "Input"],
+Cell[5609, 185, 232, 7, 82, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
