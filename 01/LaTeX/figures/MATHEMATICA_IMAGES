@@ -1,0 +1,2 @@
+Print the image in PDF from mathematica (landscape orientation), then do in a terminal:
+	$ pdfcrop input.pdf output.pdf
