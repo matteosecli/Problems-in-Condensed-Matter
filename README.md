@@ -1,4 +1,4 @@
-# Problems in Condensed-Matter
+# Problems in Condensed Matter
 This is a repository for the course in ["Basic and advanced problems in condensed matter theory"@SISSA](https://cm.sissa.it/phdsection/descriptioncourse.php?ID=17), academic year 2016/2017.
 
 The repo contains the solutions of the problems assigned during the course, including LaTeX source files and computer codes that have been used to reproduce the stated results.
