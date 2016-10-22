@@ -1,14 +1,14 @@
 % Load data from Mathematica
-load('Bands.mat')
+%load('Bands.mat')
 % Decomment to read Yusuf's output instead of mine
-%Expression1 = dlmread('eigenval.out');
+Expression1 = dlmread('eigenval.out');
 
 % Specify the number of cells
-Ncells = 10;
+Ncells = 50;
 
 % Get the discretized kx and the sorted energy values
-kx = reshape(Expression1(:,1),4*Ncells^2,length(Expression1(:,1))/(4*Ncells^2));
-bandpoints = reshape(Expression1(:,2),4*Ncells^2,length(Expression1(:,2))/(4*Ncells^2));
+kx = reshape(Expression1(:,1),4*Ncells,length(Expression1(:,1))/(4*Ncells));
+bandpoints = reshape(Expression1(:,2),4*Ncells,length(Expression1(:,2))/(4*Ncells));
 %kx = kx(1,:);
 bandpoints_sorted = sort(bandpoints);
 
@@ -20,9 +20,9 @@ axes1 = axes('Parent',figure1);
 hold(axes1,'on');
 title('Armchair nanotube energy bands','FontSize',18);
 
-for ii = 1:4*Ncells^2
- plot([-flip(kx(ii,:)) kx(ii,:)], [flip(bandpoints_sorted(ii,:)) bandpoints_sorted(ii,:)],...
-     'LineWidth',2)
+for ii = 1:4*Ncells
+ plot(kx(ii,:), bandpoints_sorted(ii,:),...
+     'LineWidth',1)
 end
 
 %% Adjusting axes and related stuff
