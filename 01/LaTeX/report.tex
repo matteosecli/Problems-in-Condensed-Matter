@@ -37,6 +37,7 @@
 \usepackage{bbold}
 \usepackage{siunitx}
 \usepackage{cancel}
+\usepackage[normalem]{ulem}
 \usepackage{braket}
 \usepackage{graphicx}
 \graphicspath{{figures/PNG/}{figures/PDF/}{figures/}}
@@ -77,7 +78,7 @@
 \title{SISSA - Solid State Problems\\\smallskip \Large Problem set 1 (week 42)}
 \author{
 	Matteo Seclì\thanks{\href{mailto:matteo.secli@sissa.it}{matteo.secli@sissa.it}},
-	Yusuf Shaidu\thanks{\href{mailto:yusuf.shaidu@sissa.it}{yusuf.shaidu@sissa.it}}}
+	Yusuf Shaidu\thanks{\href{mailto:yshaidu@sissa.it}{yshaidu@sissa.it}}}
 \begin{document}
 
 \maketitle
@@ -171,17 +172,17 @@
 	
 	Let's now construct the tight-binding Hamiltonian for an infinite system. Since we have two atoms in the elementary cell, the most general wavefunction obtained through Bloch's theorem will be
 	\begin{equation}
-		\Ket{\psi} = \sum_{R}e_{ikR}\Big\lbrace c_1\Ket{\phi_1(k,R)} + c_2\Ket{\phi_2(k,R)} \Big\rbrace
+		\Ket{\psi} = \sum_{\vec{R}}e^{i\vec{k}\cdot\vec{R}}\Big\lbrace c_1\Ket{\phi_1(\vec{k},\vec{R})} + c_2\Ket{\phi_2(\vec{k},\vec{R})} \Big\rbrace
 	\end{equation}
-	where $\Ket{\phi_1(k,R)} = e^{ika_n}\Ket{R,n}$. Here, $R$ runs on the cell coordinates and $a_n$ is the coordinate of the $n$-th atom in the unit cell. Since we don't really need this information in order to write the tight-binding Hamiltonian, we don't care.
+	where $\Ket{\phi_1(\vec{k},\vec{R})} = e^{i\vec{k}\cdot\vec{a}_n}\Ket{\vec{R},n}$. Here, $\vec{R}$ runs on the cell coordinates and $\vec{a}_n$ is the coordinate of the $n$-th atom in the unit cell.
 	
-	Now, we want $\Ket{\psi}$ to be the solution of $H\Ket{\psi} = E(k)\Ket{\psi}$. By sandwiching this equation with $\Braket{\phi_1(k,R)}$ on the left (we'll avoid to write $k$ all around to keep things clean) we get
+	Now, we want $\Ket{\psi}$ to be the solution of $H\Ket{\psi} = E(\vec{k})\Ket{\psi}$. By sandwiching this equation with $\Bra{\phi_1(\vec{k},\vec{R})}$ on the left (we'll avoid to write $\vec{k}$ all around to keep things clean) we get
 	\begin{equation}
-		\Braket{\phi_1(R)|H|\psi(R)} = E\Braket{\phi_1(R)|\psi(R)} \approx Ec_1,
+		\Braket{\phi_1(\vec{R})|H|\psi(\vec{R})} = E\Braket{\phi_1(\vec{R})|\psi(\vec{R})} \approx Ec_1,
 	\end{equation}
 	where we have approximated the overlap matrix to the identity matrix. We'll say more words about this approximation later, but for the time being let's stick to this approach.
 	
-	So far, we've assumed nothing on the interactions. If we assume that the interactions are only of nearest-neighbor type, things simplify considerably. Namely, the sum $\sum_{R}$ now runs only on those $R$ which contain nearest-neighbor atoms of the one we are considering. Just to be even more clear, if we are calculating this at cell $\vec{R}=(0,0)$ for atom 1, then its nearest neighbors will be
+	So far, we've assumed nothing on the interactions. If we assume that the interactions are only of nearest-neighbor type, things simplify considerably. Namely, the sum $\sum_{\vec{R}}$ now runs only on those $\vec{R}$'s which contain nearest-neighbor atoms of the one we are considering. Just to be even more clear, if we are calculating this at cell $\vec{R}=(0,0)$ for atom 1, then its nearest neighbors will be
 	\begin{itemize}
 		\item atom 2 in its own cell, at $\vec{R}=(0,0)$;
 		\item atom 2 in the lower right cell, at $\vec{R} = -\vec{a}_2 = a\left(\frac{1}{2},-\frac{\sqrt{3}}{2}\right)$;
@@ -292,34 +293,17 @@
 	Refer to the assignment paper for the text of the problem.
 \end{problem}
 \begin{proof}
-
-%%% YUSUF DISCUSSION STARTS HERE
-
-Consider an armchair nanotube with its axis parallel to the x-direction of cartesian the  coordinate. Thus, in the unrolled state, in this case a zigzag nanoribon, has a finite dimension (depending on the tube diameter of interest) along y-direction. The periodic  boundary conditions required that the energy is quantized along the y-component of the momentum in the reciprocal space.
-
-We defined the primitive vectors of graphene in the following way:
-\begin{equation}
-		\vec{a}_1 = \frac{a}{2} (1,\sqrt(3))
-		\qquad\text{and}\qquad
-		\vec{a}_2 = \frac{a}{2}\left(-1,\sqrt{3}\right).
-	\end{equation}
-    Here we define a chiral vector $\vec{C_h}$ which is perpendicular to the axis of the tube (along y-axis by our construction) and another vector $\vec{T}$, called the translational vector, along the axis of the tube that describes the periodicity in the infinite direction as follows:
+	The text of the problem describes the construction of a zig-zag nanotube, but then it says that it's an armchair nanotube (NT). For consistency with the nomenclature found all along in the literature, we consider in this solution what is usually called an armchair nanotube, i.e. the object constructed following the guidelines in Figure \ref{fig:carbon_nanotube_armchair}.
+	
+	The length of the circumference of a nanotube is usually described by a so-called \emph{wrapping vector} (or \emph{chiral vector}) $\vec{w} =N\vec{a}_1+M\vec{a}_2$, where $\vec{a}_1$ and $\vec{a}_2$ are the primitive vectors of the 2D graphene chosen to be symmetric for convenience, as shown in Figure \ref{fig:carbon_nanotube_armchair}. $N$ and $M$ are integers that characterize the type of the nanotube. Depending on their values, a nanotube can be referred to as either zigzag (either $M$ or $N$ is zero), armchair NT ($M=N$) or chiral NT ($N$ and $M$ can assume any value).
+	
+	The vector $\vec{w}$ is chosen such that it is perpendicular to the nanotube axis. In the case of an armchair NT -- the system of interest -- $N=M$ as stated earlier, so the nanotube is of type $(N,N)$\footnote{$(N,N)$ is the standard notation that indicates an armchair-type nanotube.}. Besides the wrapping vector, another vector $\vec{T}$, called the translation vector, is needed to completely define the unit cell in real space. This vector is parallel to the nanotube axis and perpendicular to the wrapping vector in the unrolled honeycomb lattice, and it describes the periodicity of the nanotube in the infinite direction. It is given by
     \begin{equation}
-    \vec{C_h}=N(\vec{a_1}+\vec{a_2})
-        \qquad\text{and}\qquad
-        \vec{T}=\vec{a_1}-\vec{a_2}
-    \end{equation}
-    where N is an integer. 
-The smallest unit of the armchair nanotube (NT) is the rectangle enclosed by the  $\vec{C_h}$ and $\vec{T}$ when N is set to 1. Thus, the value of N defines the size of the NT. The lattice parameter of the nanotube is the length of $\vec{T}$. In addition, $\vec{T}$ defines the one dimensional unit cell of the NT. And the corresponding one dimensional reciprocal lattice vector is $\vec{T^\prime}=\frac{2\pi}{a}(0,1)=$. Therefore, the 1-D Brillouin zone is in the interval $[-\frac{\pi}{a},\frac{\pi}{a}]$
-
-%%%% MATTEO STUFF BEGINS HERE
+        \vec{T}=\vec{a_1}-\vec{a_2}.
+    \end{equation} 
+	The unit cell  of the armchair NT in real space is the rectangle generated by $\vec{w}$ and $\vec{T}$ as shown in  Figure \ref{fig:carbon_nanotube_armchair}, and the lattice parameter of the nanotube is the length of $\vec{T}$. There are $4N$ atoms in a unit cell of the armchair NT corresponding to two hexagons in of the 2D honeycomb lattice with two atoms per cell. Recall that the 2D graphene sheet has two bands, namely, a bonding and an anti-bonding electronic energy band. Analogously, we expect $2N$ pairs of bonding and anti-bonding energy bands in the armchair NT.
 	
-	The text of the problem describes the construction of a zig-zag nanotube, but then it says that it's an armchair nanotube. For consistency with the nomenclature found all along in the literature, we consider in this solution what is usually called an armchair nanotube, i.e. the object constructed following the guidelines in Figure \ref{fig:carbon_nanotube_armchair}.
-	
-	The length of the circumference of a nanotube is usually described by a so-called \emph{wrapping vector} (or \emph{curling vector}) $\vec{w} = N\vec{a}_1+M\vec{a}_2$, where $\vec{a}_1$ and $\vec{a}_2$ are the symmetric lattice basis vector, depicted for reference in Figure \ref{fig:carbon_nanotube_armchair}. $N$ and $M$ are chosen in such a way that $\vec{w}$ is perpendicular to the axis of the nanotube, so the nanotube itself can be completely characterized by the pair $(N,M)$. In our case $N=M$, so the nanotube is of type $(N,N)$\footnote{$(N,N)$ is the standard notation that indicated an armchair-type nanotube.}. Notice that, given its definition, the length of $\vec{w}$ coincides with the length of the circumference of the nanotube.
-	
-	As shown in Figure \ref{fig:carbon_nanotube_armchair}, now the unit cell is a ring of width $a$ and circumference $||\vec{w}||$; this means that in general the unit cell of an armchair nanotube contains $4N$ atoms and the resulting tight-binding matrix will have dimensions $4N\times4N$.
-	
+	Since the unit cell of an armchair nanotube contains $4N$ atoms, the resulting tight-binding matrix will have dimensions $4N\times4N$.
 	
 	\begin{figure}[H]
 		\centering
@@ -350,10 +334,11 @@ The smallest unit of the armchair nanotube (NT) is the rectangle enclosed by the
 			\draw[->] (10,0) -- (11,0) node[below] {$\hat{e}_1$};
 			\draw[->] (10,0) -- (10,1) node[left] {$\hat{e}_2$};
 			
-			% Draw the basis vectors and the wrapping vector
-			\draw[->] (4,{sqrt(3)/3}) -- (3,{sqrt(3)+sqrt(3)/3}) node[midway, left] {$\vec{a}_1$};
-			\draw[->] (4,{sqrt(3)/3}) -- (5,{sqrt(3)+sqrt(3)/3}) node[midway, right] {$\vec{a}_2$};
+			% Draw basis vectors, the wrapping vector and translation vector
+			\draw[->] (4,{sqrt(3)/3}) -- (3,{sqrt(3)+sqrt(3)/3}) node[midway, left] {$\vec{a}_2$};
+			\draw[->] (4,{sqrt(3)/3}) -- (5,{sqrt(3)+sqrt(3)/3}) node[midway, right] {$\vec{a}_1$};
 			\draw[->, very thick] (4,{sqrt(3)/3}) -- (4,{2*sqrt(3)+sqrt(3)/3}) node[midway, right] {$\vec{w}$};
+            \draw[->, very thick] (4,{sqrt(3)/3}) -- (6,{sqrt(3)/3}) node[midway, below] {$\vec{T}$};
 			
 			% Label the atoms
 			\draw (4,{2*sqrt(3)/3}) node[above right] {$1$};
@@ -371,11 +356,17 @@ The smallest unit of the armchair nanotube (NT) is the rectangle enclosed by the
 			% Put some units
 			\draw[|-|] (0,-1) -- (2,-1) node[midway, below] {$a$};
 		\end{tikzpicture}
-		\caption{Construction of an armchair nanotube for $N=1$ ($(1,1)$ nanotube). The graphene sheet is cut along the horizontal dashed lines; the stripe obtained in this way extends in infinite direction along $\hat{e}_1$, while it covers two elementary graphene cells in the $\hat{e}_2$ direction. In other words, it's basically a zig-zag ribbon. Then the ribbon is folded along the zig-zag edges, in such a way that atom $1$ and atom $4$ are now first nearest neighbors and $\hat{e}_1$ is the axis of the so-obtained infinite cylinder.}
+		\caption{Construction of an armchair nanotube for $N=1$ ($(1,1)$ nanotube). The graphene sheet is cut along 
+		the horizontal dashed lines; the stripe obtained in this way extends in infinite direction along $\hat{e}_1$, 
+		while it covers two elementary graphene cells in the $\hat{e}_2$ direction. In other words, it's basically a
+		zig-zag ribbon. Then the ribbon is folded along the zig-zag edges, in such a way that atom $1$ and atom $4$ 
+		are now first nearest neighbors and $\hat{e}_1$ is the axis of the so-obtained infinite cylinder.}
 		\label{fig:carbon_nanotube_armchair}
 	\end{figure}
 	
-	To construct the matrix, we start from the case $N=1$. Following a procedure which is completely similar to the one described in problem \ref{pro:A}, we obtain the tight-binding matrix in the basis $\Ket{R,n}$\footnote{Where now $n$ goes from $1$ to $4$ because we have $4$ atoms in the unit cell.}:
+	To construct the matrix, we start from the case $N=1$. 
+	Following a procedure which is completely similar to the one described in problem \ref{pro:A}, we obtain the tight-binding matrix in the basis $\Ket{\vec{R},n}$\footnote{Where now $n$ goes from $1$ to $4$ because we have $4$ atoms in the unit cell.}:
+	
 	\begin{equation}
 		H = 
 		\left(
@@ -394,11 +385,13 @@ The smallest unit of the armchair nanotube (NT) is the rectangle enclosed by the
 		g(\vec{k}) = e^{i\frac{k_ya}{\sqrt{3}}}.
 	\end{equation}
 	
-	The extension of this matrix for $N>1$ is trivial; it will just be a matrix with diagonal elements equal to $\varepsilon$, upper diagonal with alternating $-tf(\vec{k})$ and $-tg(\vec{k})$, and upper right corner equal to $-tg^*(\vec{k})$ to make the Hamiltonian periodic. Then, the lower triangle of the matrix is found by complex-conjugating in order to make the Hamiltonian hermitian.
-	
-	The big difference with the graphene case, apart from the increasing dimension of the matrix, is in the shape of the Brillouin zone. In fact, since the system is basically unidimensional (along $\hat{e}_{1}$), you expect that the Brillouin zone will be unidimensional. This is in fact the case, and the BZ extends from $k_x = -\pi/a$ to $k_x = \pi/a$. So then, what is the role of $k_y$? Where does it enter?
-	
-	The system is, strictly speaking, infinite also along the circumference\footnote{A bug that moves along the circumference will never escape from the surface of the tube!}, but \emph{we made it infinite} by imposing periodic boundary conditions. This means that not every wave can run along the circumference; only waves that respect the PBC's are allowed. This in turn translates into a condition over the set of the allowed $k_y$, that now is no more $\mathbb{R}$ but it's a set of discrete, quantized values. Namely, the allowed $k_y$ values are
+	The extension of this matrix for $N>1$ is trivial; it will just be a matrix with diagonal elements equal to $\varepsilon$, upper diagonal with alternating $-tf(\vec{k})$ and $-tg(\vec{k})$, and upper right corner equal to $-tg^*(\vec{k})$ to include the periodicity along the circumferential direction in the Hamiltonian.
+	Then, the lower triangle of the matrix is found by complex-conjugating in order to make the Hamiltonian hermitian.
+	The big difference with the graphene case, apart from the increasing dimension of the matrix, is in the shape of the Brillouin zone. In fact, since the system is basically unidimensional along $\hat{e}_{1}$, the wave vector along this direction is continuous due to the translational symmetry. So, we have only one reciprocal lattice vector along $\hat{e}_1$, given by $\vec{b}=\frac{2\pi}{a}(0,1)$. Therefore, it becomes obvious that the 1D Brillouin zone (BZ) is in the interval $[-\frac{\pi}{a},\frac{\pi}{a}]$.
+
+	So then, what is the role of $k_y$? Where does it enter?
+
+	The system is, strictly speaking, infinite also along the circumference\footnote{A bug that moves along the circumference will never escape from the surface of the tube!}, but \emph{we made it infinite} by imposing periodic boundary conditions. This means that not every wave can run along the circumference; only waves that respect the PBC's are allowed. This in turn translates into a condition over the set of the allowed $k_y$'s, that now is no more $\mathbb{R}$ but it's a set of discrete, quantized values. Namely, the allowed $k_y$ values are
 	\begin{equation}
 		k_y = \frac{2\pi}{a\sqrt{3}}\left(\frac{m}{N}\right), 
 		\qquad -N \leq m \leq N.
@@ -438,15 +431,43 @@ The smallest unit of the armchair nanotube (NT) is the rectangle enclosed by the
 		\label{fig:armchair_BZ}
 	\end{figure}
 	
-	The number of bands is $4N$ (since the matrix is $4N\times4N$), which is $40$ for $N=10$, but in Figure \ref{fig:B_E_of_k} only $22$ dispersion lines appear ($11$ above and $11$ below). This is because the bands corresponding to $-m$ and to $m$ are \emph{degenerate}, apart from the ones for $m=0$ and $m=\pm N$. In fact, you see that $2\cdot(9\cdot2+2\cdot1)=40$\footnote{Out of $11$ bands in each half plane of Figure \ref{fig:B_E_of_k}, $9$ of them are double-degenerate and $2$ of them are single-degenerate.}. The explanation of this fact can be understood in two ways. The first argument is that we are squeezing $2N$ graphene cells into one armchair unit cell, so a two-fold degeneracy appears. The second argument is that we are basically taking $k_y$-fixed \emph{slices} of the graphene dispersion (the one plotted in Figure \ref{fig:E_of_k}) along $k_x$; from the figure, you see that $k_y$ and $-k_y$ correspond to the same value of the energy, except for $k_y=0$ (i.e., $m=0$) and $k_y = \pm\frac{2\pi}{a\sqrt{3}}$ (i.e., $m = \pm N$).
+	The number of bands is $4N$ (since the matrix is $4N\times4N$), which is $40$ for $N=10$, but in Figure \ref{fig:NT_010} only $22$ dispersion lines appear ($11$ above and $11$ below). This is because the bands corresponding to $-m$ and to $m$ are \emph{degenerate}, apart from the ones for $m=0$ and $m=\pm N$. In fact, you see that $2\cdot(9\cdot2+2\cdot1)=40$\footnote{Out of $11$ bands in each half plane of Figure \ref{fig:NT_010}, $9$ of them are double-degenerate and $2$ of them are single-degenerate.}. The explanation of this fact can be understood in two ways. The first argument is that we are squeezing $2N$ graphene cells into one armchair unit cell, so a two-fold degeneracy appears. The second argument is that we are basically taking $k_y$-fixed \emph{slices} of the graphene dispersion (the one plotted in Figure \ref{fig:E_of_k}) along $k_x$; from the figure, you see that $k_y$ and $-k_y$ correspond to the same value of the energy, except for $k_y=0$ (i.e., $m=0$) and $k_y = \pm\frac{2\pi}{a\sqrt{3}}$ (i.e., $m = \pm N$). Thus for a general $(N,N)$ armchair NT, with the exception of very large $N$ where the bands are no longer separated from each other as shown in the figures, there are $2N$ valence bands and and $2N$ conduction bands. Among the $2N$ bands, $N-1$  bands are doubly degenerate while two of them are non-degenerate.
 	
 	The second argument is useful because it automatically gives the behavior of the system from $N\to\infty$: we take slices of the graphene dispersion for finer and finer values of $k_y$, to the limit in which we take slices at every $k_y \in \mathbb{R}$. In this limit, the nanotube is basically indistinguishable from the graphene! This matches our physical intuition, since an infinite cylinder with infinite radius is basically indistinguishable from an infinite 2D plane.
 	
+	It's worth pointing out that the armchair NT for any $N$ is metallic, as can be seen from all the electronic band structures reported. There is a band crossing at the Fermi level ($E=\varepsilon$) which makes the system a zero band gap semiconductor similar to the Dirac cones of the 2D honeycomb lattice. In this case, the bands crossing occurs at $k_x=\pm\frac{2\pi}{3a}$. This implies that it takes infinitesimally small energy to excite an electron from the valence band to the conduction band.
+    
 	\begin{figure}[H]
-		\includegraphics[width=\textwidth]{B_E_of_k}
-		\caption{Plot of $E(k_x)$ for different (discrete) values of $k_y$. The values used are $N=10$, $t=1$ and $a=1$.}
-		\label{fig:B_E_of_k}
+		\includegraphics[width=\textwidth]{NT_002}
+		\caption{Plot of $E(k_x)$. The values used are $N=2$, $t=1$ and $a=1$. Since every color corresponds to a different band, the dashed lines show the degeneracy of the central bands.}
+		\label{fig:NT_002}
 	\end{figure}
+    
+	\begin{figure}[H]
+		\includegraphics[width=\textwidth]{NT_004}
+		\caption{Plot of $E(k_x)$. The values used are $N=4$, $t=1$ and $a=1$. Since every color corresponds to a different band, the dashed lines show the degeneracy of the central bands.}
+		\label{fig:NT_004}
+	\end{figure}
+
+	\begin{figure}[H]
+		\includegraphics[width=\textwidth]{NT_010}
+		\caption{Plot of $E(k_x)$. The values used are $N=10$, $t=1$ and $a=1$.}
+		\label{fig:NT_010}
+	\end{figure}
+    
+	\begin{figure}[H]
+		\includegraphics[width=\textwidth]{NT_050}
+		\caption{Plot of $E(k_x)$. The values used are $N=50$, $t=1$ and $a=1$.}
+		\label{fig:NT_050}
+	\end{figure}
+    
+	\begin{figure}[H]
+		\includegraphics[width=\textwidth]{NT_100}
+		\caption{Plot of $E(k_x)$. The values used are $N=100$, $t=1$ and $a=1$.}
+		\label{fig:NT_100}
+	\end{figure}
+
+
 
 
 \end{proof}
